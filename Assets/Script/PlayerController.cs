@@ -1,0 +1,253 @@
+﻿using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+public enum ActionType
+{
+    Left,
+    Right,
+    Jump,
+    Attack
+}
+
+
+public class PlayerController : MonoBehaviour
+{
+    public string idleAnim;
+    public string runAnim;
+    public string jumpAnim;
+    public string attackAnim;
+    public Animator animator;
+
+    public Rigidbody2D rb;
+    public float speed;
+
+    public bool groundCheck;
+    public float jumpForce;
+    public SpriteRenderer spriteRender;
+    public float attackDuration = 1f;
+    private bool isAttacking = false;
+
+    public int playerCurrentHp;
+    public int playerMaxHp;
+    public Image healthBarPlayer;
+    public bool isDead = false;
+    private bool isHurt = false;
+
+    public Collider2D hitBox;
+
+
+    public void Awake()
+    {
+        if (FindObjectsOfType<PlayerController>().Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+    public void Start()
+    {
+        playerCurrentHp = playerMaxHp;
+        UpdateHealthBar();
+        if (hitBox != null )
+        {
+            hitBox.enabled = false;
+           
+        }
+    }
+    public virtual void Update()
+    {
+        if (isDead || isAttacking || isHurt) return;
+        if (isAttacking)
+        {
+            return;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            
+            Move(ActionType.Left);
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            
+            Move(ActionType.Right);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            
+            Move(ActionType.Jump);
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && !isAttacking)
+        {
+            StartCoroutine(Attack());
+        }
+
+        if (!Input.anyKey)
+        {
+            if (groundCheck) // cham dat
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+                animator.Play(idleAnim);
+            }
+            else
+            {
+                animator.Play(jumpAnim);
+            }
+        }
+        if (!groundCheck)
+        {
+            animator.Play(jumpAnim);
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                spriteRender.transform.localScale = new Vector3(-1, 1, 1);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                spriteRender.transform.localScale = new Vector3(1, 1, 1);
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+            }
+
+        }
+    }
+    public virtual void Move(ActionType actionTypeParam)
+    {
+        if (!groundCheck)
+        {
+            return;
+        }
+
+        switch (actionTypeParam)
+        {
+            case ActionType.Left:
+
+                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                spriteRender.transform.localScale = new Vector3(-1, 1, 1);
+                if (groundCheck)
+                {
+                    animator.Play(runAnim);
+                }
+                else
+                {
+                    animator.Play(jumpAnim);
+                }
+
+
+                break;
+            case ActionType.Right:
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                spriteRender.transform.localScale = new Vector3(1, 1, 1);
+                if (groundCheck)
+                {
+                    animator.Play(runAnim);
+                }
+                else
+                {
+                    animator.Play(jumpAnim);
+                }
+                break;
+            case ActionType.Jump:
+
+                animator.Play(jumpAnim);
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(GetComponent<Rigidbody2D>().velocity.x, 2 * jumpForce), ForceMode2D.Impulse);
+                break;
+        }
+      
+
+    }
+    IEnumerator Attack()
+    {
+        isAttacking = true;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+ 
+        animator.Play(attackAnim);
+        hitBox.enabled = true;
+        yield return new WaitForSeconds(attackDuration);
+        hitBox.enabled = false;
+        isAttacking = false;
+    }
+    public void TakeDamagePlayer(int damage)
+    {
+        
+        if (isDead) return;
+        playerCurrentHp -= damage;
+        UpdateHealthBar();
+
+        if (playerCurrentHp <= 0)
+        {
+            
+            Die();
+            return;
+        }
+        StartCoroutine(PlayHitAnimation());
+
+    }
+    public void HealPlayer(int healAmount)
+    {
+        if (isDead) return;
+        playerCurrentHp += healAmount;
+        if (playerCurrentHp > playerMaxHp)
+        {
+            playerCurrentHp = playerMaxHp;
+        }
+        UpdateHealthBar();
+    }
+    public void UpdateHealthBar()
+    {
+        if (healthBarPlayer != null) {
+            healthBarPlayer.fillAmount = (float)playerCurrentHp / playerMaxHp;
+        }
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        animator.ResetTrigger("Hit");
+        animator.SetTrigger("Dead");
+        Destroy(gameObject, 0.6f);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(isAttacking&& collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemies enemy = collision.gameObject.GetComponent<Enemies>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(10);
+            }
+        }
+        if(isAttacking && collision.gameObject.CompareTag("Chest"))
+        {
+            ChestController chest = collision.gameObject.GetComponent<ChestController>();
+            if (chest != null)
+            {
+                chest.OpenChest();
+            }
+        }
+        if(collision.gameObject.tag == "HealthItem")
+        {
+            HealPlayer(20);
+            Destroy(collision.gameObject);
+        }
+    }
+    public void EnableHitBox()
+    {
+        hitBox.enabled = true;
+    }
+    public void DisableHitBox()
+    {
+        hitBox.enabled = false;
+    }
+    private IEnumerator PlayHitAnimation()
+    {
+        if(isDead) yield break;
+        isHurt = true;
+        animator.SetTrigger("Hit");
+
+        yield return new WaitForSeconds(0.5f);
+
+        isHurt = false;
+    }
+}
