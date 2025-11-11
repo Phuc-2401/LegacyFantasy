@@ -125,7 +125,6 @@
     <Compile Include="Assets\ProCamera2D\Code\Extensions\ProCamera2DTransitionsFX.cs" />
     <Compile Include="Assets\ProCamera2D\3rd Party Plugins Support\PlayMakerActions\ProCamera2DApplyInfluenceAction.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Triggers\ProCamera2DTriggerZoom.cs" />
-    <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\ProCamera2D\Examples\Platformer\Scripts\ToggleTransitionsFX.cs" />
     <Compile Include="Assets\ProCamera2D\3rd Party Plugins Support\PlayMakerActions\ProCamera2DShakeWithValuesAction.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Triggers\ProCamera2DTriggerInfluence.cs" />

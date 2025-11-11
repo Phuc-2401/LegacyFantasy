@@ -8,7 +8,7 @@ public class PlayerContaint : MonoBehaviour
     public MapController mapController;
     public void Init()
     {
-        characterController.Init();
         mapController.Init();
+        characterController.Init();
     }
 }

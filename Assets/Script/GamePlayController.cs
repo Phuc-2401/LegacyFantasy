@@ -9,24 +9,13 @@ public class GamePlayController : MonoBehaviour
     public PlayerContaint playerContaint;
     public GameScene gameScene;
 
-    private void Awake()
+    public void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
     }
-    public void Init()
+    public void Start()
     {
-        if (gameScene != null)
-            gameScene.Init();
-
-        if (playerContaint != null)
-            playerContaint.Init();
+        gameScene.Init();
+        playerContaint.Init();
     }
 }

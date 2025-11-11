@@ -8,33 +8,26 @@ using TMPro;
 public class GameScene : MonoBehaviour
 {
     public int currentStar;
-    public int totalStar;
+    public int requiredStars;
     public TMP_Text starText;
-
     public void Init()
     {
-        
-    }
-    public void Awake()
-    {
-        
     }
     public void Start()
     {
-        starText.text = currentStar.ToString() + " / " + totalStar.ToString();
+        Target target = FindObjectOfType<Target>();
+        requiredStars = target.requiredStars;
+        starText.text = currentStar.ToString() + " / " + requiredStars.ToString();
+        PlayerPrefs.SetInt("currentStar", 0);
+        PlayerPrefs.Save();
     }
     public void UpdateStar(int value)
     {
         currentStar += value;
-        starText.text = currentStar.ToString() + " / " + totalStar.ToString();
-    }
-    public void ResetStar(int total)
-    {
-        currentStar = 0;
-        totalStar = total;
-        if (starText != null)
-        {
-            starText.text = currentStar.ToString() + " / " + totalStar.ToString();
-        }
+        Target target = FindObjectOfType<Target>();
+        requiredStars = target.requiredStars;
+        starText.text = currentStar.ToString() + " / " + requiredStars.ToString();
+        PlayerPrefs.SetInt("currentStar", currentStar);
+        PlayerPrefs.Save();
     }
 }

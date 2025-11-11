@@ -5,58 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class MapController : MonoBehaviour
 {
-    public static MapController instance;
+    public GameObject mapData;
+    public List<Spawn> spawns;
+    Spawn Spawn(int id)
+    { 
+            foreach (var item in spawns)
+            {
+                if (item.id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    }    
+
     public void Init()
     {
-    }
-    public void LoadMap(string mapName)
-    {
-        SceneManager.LoadScene(mapName);
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("Map loaded: " + scene.name);
-        Target target = FindObjectOfType<Target>();
-        int requiredStars;
-        if (target != null)
-        {
-            requiredStars = target.requiredStars;
-        }
-        else
-        {
-            requiredStars = 0;
-        }
-
-        GameScene gameScene = FindObjectOfType<GameScene>();
-        if (gameScene != null)
-        {
-            gameScene.ResetStar(requiredStars);
-        }
-        InitAfterSceneLoad();
+        string pathMap = "Map{0}";
+        int idLevel = PlayerPrefs.GetInt("currentMap", 1);
+        mapData = Instantiate(Resources.Load<GameObject>(string.Format(pathMap, idLevel)));
+        mapData.transform.position = Vector3.zero;
+        var temp = Spawn(idLevel);
     }
 
-    private void InitAfterSceneLoad()
-    {
-        if (GamePlayController.instance != null)
-            GamePlayController.instance.Init();
-    }
-
-    private void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    
+}
+[System.Serializable]
+public class Spawn 
+{
+    public int id;
+    public Transform post;
 }

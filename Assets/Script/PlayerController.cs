@@ -37,16 +37,6 @@ public class PlayerController : MonoBehaviour
 
     public Collider2D hitBox;
 
-
-    public void Awake()
-    {
-        if (FindObjectsOfType<PlayerController>().Length > 1)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
-    }
     public void Start()
     {
         playerCurrentHp = playerMaxHp;

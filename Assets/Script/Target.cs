@@ -5,23 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class Target : MonoBehaviour
 {
-    public string nextSceneName;
-    public int requiredStars ;
+    public int requiredStars;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) return;
-
-        if (GamePlayController.instance != null && GamePlayController.instance.gameScene != null)
+        if (other.gameObject.tag == "Player")
         {
-            var gameScene = GamePlayController.instance.gameScene;
-            if (gameScene.currentStar >= requiredStars)
+            int currentStar = PlayerPrefs.GetInt("currentStar", 0);
+            if (currentStar >= requiredStars)
             {
-                MapController.instance.LoadMap(nextSceneName);
+                var Map = PlayerPrefs.GetInt("currentMap", 1);
+                Map += 1;
+                PlayerPrefs.SetInt("currentMap", Map);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("GamePlay");
             }
-        }
-        else
-        {
-            MapController.instance.LoadMap(nextSceneName);
         }
     }
 }
