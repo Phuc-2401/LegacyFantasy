@@ -115,6 +115,7 @@
     <Compile Include="Assets\ProCamera2D\Examples\TopDownShooter\Scripts\Enemy\EnemyWander.cs" />
     <Compile Include="Assets\ProCamera2D\Examples\TopDownShooter\Scripts\GameOver.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Extensions\ProCamera2DGeometryBoundaries.cs" />
+    <Compile Include="Assets\Script\DeadZone.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Core\KDTree.cs" />
     <Compile Include="Assets\Script\GamePlayController.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Core\IPreMover.cs" />

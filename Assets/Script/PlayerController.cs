@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private bool isHurt = false;
 
     public Collider2D hitBox;
+    private Coroutine dotCoroutine;
 
     public void Start()
     {
@@ -196,6 +197,7 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         animator.ResetTrigger("Hit");
         animator.SetTrigger("Dead");
+        CharacterControllerGamePlay.instance.PlayerDead();
         Destroy(gameObject, 0.6f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -239,5 +241,26 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         isHurt = false;
+    }
+    public void DamageOverTime(int totalDamage, float duration)
+    {
+        dotCoroutine = StartCoroutine(DOT(totalDamage, duration));
+    }
+    public void StopDamageOverTime()
+    {
+        StopCoroutine(dotCoroutine);
+    }
+    IEnumerator DOT(int totalDamage, float duration)
+    {
+        int ticks = 20; 
+        float delay = duration / ticks;
+        int dmg = totalDamage / ticks;
+
+        for (int i = 0; i < ticks; i++)
+        {
+            if (isDead) yield break;
+            TakeDamagePlayer(dmg);
+            yield return new WaitForSeconds(delay);
+        }
     }
 }

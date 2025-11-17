@@ -11,7 +11,18 @@ public class DamageZone : MonoBehaviour
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             if(player != null)
             {
-                player.TakeDamagePlayer(10);
+                player.DamageOverTime(100,20f);
+            }
+        }
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            if(player != null)
+            {
+                player.StopDamageOverTime();
             }
         }
     }

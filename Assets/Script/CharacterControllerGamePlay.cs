@@ -26,5 +26,13 @@ public class CharacterControllerGamePlay : MonoBehaviour
         player = Instantiate(playerPrefab, spawnPos, Quaternion.identity).GetComponent<PlayerController>();
 
         proCamera2D.AddCameraTarget(player.transform);
+
+    }
+    public void PlayerDead()
+    {
+        if (player != null)
+        {
+            proCamera2D.RemoveCameraTarget(player.transform);
+        }
     }
 }
