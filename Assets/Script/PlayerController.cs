@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour
         animator.ResetTrigger("Hit");
         animator.SetTrigger("Dead");
         CharacterControllerGamePlay.instance.PlayerDead();
+        GamePlayController.instance.gameScene.losePanel.SetActive(true);
         Destroy(gameObject, 0.6f);
     }
     private void OnTriggerEnter2D(Collider2D collision)

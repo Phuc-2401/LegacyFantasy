@@ -13,11 +13,7 @@ public class Target : MonoBehaviour
             int currentStar = PlayerPrefs.GetInt("currentStar", 0);
             if (currentStar >= requiredStars)
             {
-                var Map = PlayerPrefs.GetInt("currentMap", 1);
-                Map += 1;
-                PlayerPrefs.SetInt("currentMap", Map);
-                PlayerPrefs.Save();
-                SceneManager.LoadScene("GamePlay");
+                GamePlayController.instance.gameScene.continuePanel.SetActive(true);
             }
         }
     }
