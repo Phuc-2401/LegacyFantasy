@@ -13,27 +13,25 @@ public class GameScene : MonoBehaviour
     public GameObject starBar;
     public GameObject continuePanel;
     public GameObject losePanel;
-    public GameObject playGamePanel;
+    public GameObject winPanel;
     public Button Retry;
     public Button Continue;
-    public Button Play;
-    public Button Exit;
+    public Button Menu;
+    public Button Menu2;
 
     public void Init()
     {
         Continue.onClick.AddListener(OnClickNext);
         Retry.onClick.AddListener(OnClickRetry);
-        Play.onClick.AddListener(OnClickPlay);
-        Exit.onClick.AddListener(OnClickExit);
+        Menu.onClick.AddListener(OnClickMenu);
+        Menu2.onClick.AddListener(OnClickMenu);
     }
-    private void OnClickPlay()
+    
+    private void OnClickMenu()
     {
-        playGamePanel.SetActive(false);
-        starBar.SetActive(true);
-    }
-    private void OnClickExit()
-    {
-        Application.Quit();
+        SceneManager.LoadScene("PlayGameScene");
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
     private void OnClickRetry()
     {
@@ -49,7 +47,7 @@ public class GameScene : MonoBehaviour
     }
     public void Start()
     {
-        starBar.SetActive(false);
+        starBar.SetActive(true);
         Target target = FindObjectOfType<Target>();
         requiredStars = target.requiredStars; 
         starText.text = currentStar.ToString() + " / " + requiredStars.ToString();

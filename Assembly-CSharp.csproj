@@ -122,6 +122,7 @@
     <Compile Include="Assets\ProCamera2D\Code\Core\ISizeDeltaChanger.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Extensions\ProCamera2DParallax.cs" />
     <Compile Include="Assets\ProCamera2D\Examples\TopDownShooter\Scripts\Player\PlayerInput.cs" />
+    <Compile Include="Assets\Script\MainMenu.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Core\ISizeOverrider.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Extensions\ProCamera2DTransitionsFX.cs" />
     <Compile Include="Assets\ProCamera2D\3rd Party Plugins Support\PlayMakerActions\ProCamera2DApplyInfluenceAction.cs" />
