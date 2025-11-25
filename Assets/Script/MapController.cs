@@ -17,9 +17,7 @@ public class MapController : MonoBehaviour
                 }
             }
             return null;
-
     }    
-
     public void Init()
     {
         string pathMap = "Map{0}";
@@ -28,8 +26,6 @@ public class MapController : MonoBehaviour
         mapData.transform.position = Vector3.zero;
         var temp = Spawn(idLevel);
     }
-
-    
 }
 [System.Serializable]
 public class Spawn 
