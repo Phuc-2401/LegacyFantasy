@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 025e9680fa163754eb01893fa59414fe
+guid: 5053ff3ca96cc5a4386e5fd545559950
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 14
+  spritePixelsToUnits: 8
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack_0
+      name: fall_back_1-sheet_0
       rect:
         serializedVersion: 2
-        x: 58
-        y: 49
-        width: 33
-        height: 36
+        x: 14
+        y: 6
+        width: 19
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e33f2ab89c238944998465d314f6067c
-      internalID: 1320515507
+      spriteID: 0be181e4f19505447ad8d2c2b097a082
+      internalID: 313190207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_1
+      name: fall_back_1-sheet_1
       rect:
         serializedVersion: 2
-        x: 210
-        y: 49
-        width: 28
-        height: 36
+        x: 63
+        y: 6
+        width: 22
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa50526a04c74b847a62580a0426d5c1
-      internalID: 153012473
+      spriteID: 9aaf4d622f086b34ca53b13f605e162f
+      internalID: 1494424621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_2
+      name: fall_back_1-sheet_2
       rect:
         serializedVersion: 2
-        x: 360
-        y: 49
+        x: 108
+        y: 6
         width: 29
-        height: 34
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e387d035a48282429db1fad5d72a9a9
-      internalID: -447385684
+      spriteID: 6e72ac9a513b0fb49a897fc60871e138
+      internalID: 1273647582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_3
+      name: fall_back_1-sheet_3
       rect:
         serializedVersion: 2
-        x: 510
-        y: 49
-        width: 29
-        height: 34
+        x: 154
+        y: 5
+        width: 41
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98cdd609f044067469b698e8dc25a311
-      internalID: -970276199
+      spriteID: 84bf5b5f3f348bc42bec11eb30ed2b5c
+      internalID: 1856625226
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_4
+      name: fall_back_1-sheet_4
       rect:
         serializedVersion: 2
-        x: 660
-        y: 49
-        width: 29
-        height: 34
+        x: 204
+        y: 5
+        width: 41
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,71 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89841af407ceffd4fa52ca3b5d6b4910
-      internalID: -1147413618
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_5
-      rect:
-        serializedVersion: 2
-        x: 810
-        y: 49
-        width: 31
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6a92997f5b606148bf10f88951ae78b
-      internalID: 1618499569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_6
-      rect:
-        serializedVersion: 2
-        x: 931
-        y: 49
-        width: 88
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f56ca45fbebf09e4094ec04809671315
-      internalID: -476843080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_7
-      rect:
-        serializedVersion: 2
-        x: 1081
-        y: 49
-        width: 87
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 07b67d0eb314c5c49b87c8125fada81a
-      internalID: 265208139
+      spriteID: 81de30b067b31b2469e5ab3c7ad9aff8
+      internalID: -583048633
       vertices: []
       indices: 
       edges: []
@@ -280,7 +217,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 80f5715dad86aea4c8178524f74f7f87
+    spriteID: 2dfa4bc3f4c602646b9140353462df32
     internalID: 0
     vertices: []
     indices: 
@@ -288,14 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack_0: 1320515507
-      Attack_1: 153012473
-      Attack_2: -447385684
-      Attack_3: -970276199
-      Attack_4: -1147413618
-      Attack_5: 1618499569
-      Attack_6: -476843080
-      Attack_7: 265208139
+      fall_back_1-sheet_0: 313190207
+      fall_back_1-sheet_1: 1494424621
+      fall_back_1-sheet_2: 1273647582
+      fall_back_1-sheet_3: 1856625226
+      fall_back_1-sheet_4: -583048633
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -14,6 +14,7 @@ public class GameScene : MonoBehaviour
     public GameObject continuePanel;
     public GameObject losePanel;
     public GameObject winPanel;
+    public GameObject toturialPanel;
     public Button Retry;
     public Button Continue;
     public Button Menu;
@@ -47,6 +48,15 @@ public class GameScene : MonoBehaviour
     }
     public void Start()
     {
+        if (PlayerPrefs.GetInt("currentMap", 1) == 1)
+        {
+            toturialPanel.SetActive(true);
+        }
+        else
+        {
+            toturialPanel.SetActive(false);
+
+        }
         starBar.SetActive(true);
         Target target = FindObjectOfType<Target>();
         requiredStars = target.requiredStars; 
