@@ -181,16 +181,27 @@ public class Enemies : MonoBehaviour
     }
     public void DealDamage()
     {
+        int currentMap = PlayerPrefs.GetInt("currentMap", 1);
         if (isDead || playerTransform == null) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
         if (distanceToPlayer <= attackRange)
         {
             PlayerController playerController = playerTransform.GetComponent<PlayerController>();
-            if (playerController != null)
+            if (playerController != null && currentMap == 1)
             {
-                Debug.Log("Enemy deals damage to player!");
-                playerController.TakeDamagePlayer(5); // tùy chỉnh damage
+                Debug.Log("Enemy deals damage to player = 5!");
+                playerController.TakeDamagePlayer(5); 
+            }
+            if(currentMap == 2)
+            {    
+                Debug.Log("Enemy deals damage to player = 10!");
+                playerController.TakeDamagePlayer(10);
+            }
+            if(currentMap == 3)
+            {
+                Debug.Log("Enemy deals damage to player = 15!");
+                playerController.TakeDamagePlayer(15);
             }
         }
     }
