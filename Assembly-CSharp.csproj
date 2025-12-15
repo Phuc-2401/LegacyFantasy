@@ -106,7 +106,6 @@
     <Compile Include="Assets\ProCamera2D\Code\Triggers\ProCamera2DTriggerRails.cs" />
     <Compile Include="Assets\ProCamera2D\Examples\TopDownShooter\Scripts\Pool\Pool.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Core\Utils\Utils.cs" />
-    <Compile Include="Assets\Script\AttackZone.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Extensions\ProCamera2DLimitSpeed.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Core\EnumMovementAxis.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Core\IPositionOverrider.cs" />

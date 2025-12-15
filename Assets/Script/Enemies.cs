@@ -24,6 +24,8 @@ public class Enemies : MonoBehaviour
     public bool isAttacking = false;
     public float attackDuration = 1.5f;
     public bool isFacingRight = true;
+    public float detectRange;
+    public float outRange;
 
     public int maxHp;
     public int currentHp;
@@ -38,12 +40,15 @@ public class Enemies : MonoBehaviour
         currentHp = maxHp;
         UpdateHealthBar();
         startPos = transform.position;
-         wasRotated = transform.localScale.x < 0;
+        wasRotated = transform.localScale.x < 0;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
         if(isDead) return;
+
+        DetectPlayer();
 
         if (isChasingPlayer && playerTransform != null)
         {
@@ -76,6 +81,21 @@ public class Enemies : MonoBehaviour
             TurnAround();
         }
     }
+    void DetectPlayer()
+    {
+        if (playerTransform == null) return;
+
+        float distance = Vector2.Distance(transform.position, playerTransform.position);
+
+        if (!isChasingPlayer && distance <= detectRange)
+        {
+            isChasingPlayer = true;
+        }
+        else if (isChasingPlayer && distance > outRange)
+        {
+            isChasingPlayer = false;
+        }
+    }
     public void ChasePlayer()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
@@ -96,6 +116,17 @@ public class Enemies : MonoBehaviour
             if (!isAttacking)
                 StartCoroutine(Attack());
         }
+    }
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.gray;
+        Gizmos.DrawWireSphere(transform.position, outRange);
     }
     void TurnAround()
     {
@@ -121,32 +152,6 @@ public class Enemies : MonoBehaviour
         isAttacking = false;
         
 
-    }
-    public void StartChase(Transform target)
-    {
-        playerTransform = target;
-        isChasingPlayer = true;
-    }
-
-    public void StopChase()
-    {
-        playerTransform = null;
-        isChasingPlayer = false;
-    }
-    public void ForceTurnLeft()
-    {
-        wasRotated = true;
-        Vector3 scale = transform.localScale;
-        scale.x = -Mathf.Abs(scale.x);
-        transform.localScale = scale;
-    }
-
-    public void ForceTurnRight()
-    {
-        wasRotated = false;
-        Vector3 scale = transform.localScale;
-        scale.x = Mathf.Abs(scale.x);
-        transform.localScale = scale;
     }
     public void TakeDamage(int damage)
     {
