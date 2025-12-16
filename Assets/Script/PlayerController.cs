@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             if (groundCheck) // cham dat
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+                rb.velocity = new Vector2(0,rb.velocity.y);
                 animator.Play(idleAnim);
             }
             else
@@ -93,12 +93,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 spriteRender.transform.localScale = new Vector3(-1, 1, 1);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 spriteRender.transform.localScale = new Vector3(1, 1, 1);
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                rb.velocity = new Vector2(speed, rb.velocity.y);
             }
 
         }
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             case ActionType.Left:
 
-                GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, GetComponent<Rigidbody2D>().velocity.y);
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
                 spriteRender.transform.localScale = new Vector3(-1, 1, 1);
                 if (groundCheck)
                 {
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
                 break;
             case ActionType.Right:
-                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, GetComponent<Rigidbody2D>().velocity.y);
+                rb.velocity = new Vector2(speed, rb.velocity.y);
                 spriteRender.transform.localScale = new Vector3(1, 1, 1);
                 if (groundCheck)
                 {
@@ -140,9 +140,8 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case ActionType.Jump:
-
                 animator.Play(jumpAnim);
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(GetComponent<Rigidbody2D>().velocity.x, 2 * jumpForce), ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(rb.velocity.x, 2 * jumpForce), ForceMode2D.Impulse);
                 break;
         }
       

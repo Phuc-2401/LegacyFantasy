@@ -12,7 +12,6 @@ public class Enemies : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
     public float speed;
-    public bool wasRotated = false;
 
     public float patrolDistance; 
     private Vector3 startPos;
@@ -40,7 +39,6 @@ public class Enemies : MonoBehaviour
         currentHp = maxHp;
         UpdateHealthBar();
         startPos = transform.position;
-        wasRotated = transform.localScale.x < 0;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -71,27 +69,22 @@ public class Enemies : MonoBehaviour
 
         float distanceFromStart = transform.position.x - startPos.x;
 
-        if ( !wasRotated && distanceFromStart >= patrolDistance)
-        {
-
-            TurnAround();
-        }
-        else if (wasRotated && distanceFromStart <= -patrolDistance)
+        if (Mathf.Abs(distanceFromStart) >= patrolDistance)
         {
             TurnAround();
         }
     }
-    void DetectPlayer()
+    public void DetectPlayer()
     {
         if (playerTransform == null) return;
 
         float distance = Vector2.Distance(transform.position, playerTransform.position);
 
-        if (!isChasingPlayer && distance <= detectRange)
+        if (distance <= detectRange)
         {
             isChasingPlayer = true;
         }
-        else if (isChasingPlayer && distance > outRange)
+        else if (distance > outRange)
         {
             isChasingPlayer = false;
         }
@@ -106,10 +99,11 @@ public class Enemies : MonoBehaviour
             transform.position += new Vector3(dir.x * speed * Time.deltaTime, 0, 0);
             animator.Play(runAnim);
 
-            if (dir.x > 0 && wasRotated)
+            if (Mathf.Sign(dir.x) != Mathf.Sign(transform.localScale.x))
+            {
                 TurnAround();
-            else if (dir.x < 0 && !wasRotated)
-                TurnAround();
+            }
+
         }
         else
         {
@@ -128,11 +122,8 @@ public class Enemies : MonoBehaviour
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere(transform.position, outRange);
     }
-    void TurnAround()
+    public void TurnAround()
     {
-        wasRotated = !wasRotated;
-
-        
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;

@@ -67,6 +67,10 @@ public class GameScene : MonoBehaviour
     public void UpdateStar(int value)
     {
         currentStar += value;
+        if(currentStar > requiredStars)
+        {
+            currentStar = requiredStars;
+        }
         Target target = FindObjectOfType<Target>();
         requiredStars = target.requiredStars;
         starText.text = currentStar.ToString() + " / " + requiredStars.ToString();
