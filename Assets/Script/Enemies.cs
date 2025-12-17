@@ -21,10 +21,8 @@ public class Enemies : MonoBehaviour
 
     public float attackRange;
     public bool isAttacking = false;
-    public float attackDuration = 1.5f;
-    public bool isFacingRight = true;
     public float detectRange;
-    public float outRange;
+    public float distanceToPlayer;
 
     public int maxHp;
     public int currentHp;
@@ -34,7 +32,7 @@ public class Enemies : MonoBehaviour
     public Transform starPrefab;
 
 
-    void Start()
+    public void Start()
     {
         currentHp = maxHp;
         UpdateHealthBar();
@@ -42,9 +40,11 @@ public class Enemies : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void Update()
+    public void Update()
     {
         if(isDead) return;
+
+        distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
         DetectPlayer();
 
@@ -52,7 +52,7 @@ public class Enemies : MonoBehaviour
         {
             ChasePlayer();
         }
-        else
+        else 
         {
             Move();
         }
@@ -78,21 +78,17 @@ public class Enemies : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        float distance = Vector2.Distance(transform.position, playerTransform.position);
-
-        if (distance <= detectRange)
+        if (distanceToPlayer <= detectRange)
         {
             isChasingPlayer = true;
         }
-        else if (distance > outRange)
+        else if (distanceToPlayer > detectRange)
         {
             isChasingPlayer = false;
         }
     }
     public void ChasePlayer()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
-
         if (distanceToPlayer > attackRange)
         {
             Vector3 dir = (playerTransform.position - transform.position).normalized;
@@ -118,9 +114,6 @@ public class Enemies : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-
-        Gizmos.color = Color.gray;
-        Gizmos.DrawWireSphere(transform.position, outRange);
     }
     public void TurnAround()
     {
@@ -128,21 +121,16 @@ public class Enemies : MonoBehaviour
         scale.x *= -1;
         transform.localScale = scale;
     }
-    public IEnumerator Attack()
+    IEnumerator Attack()
     {
 
         isAttacking = true;
         animator.Play(attackAnim);
-       
-
         rb.velocity = Vector2.zero;
         rb.bodyType = RigidbodyType2D.Kinematic;
-
-        yield return new WaitForSeconds(attackDuration);
+        yield return new WaitForSeconds(1f);
         rb.bodyType = RigidbodyType2D.Dynamic;
         isAttacking = false;
-        
-
     }
     public void TakeDamage(int damage)
     {
@@ -169,18 +157,18 @@ public class Enemies : MonoBehaviour
     {
         isDead = true;
         animator.Play(dieAnim);
-        if(starPrefab != null)
+        Destroy(gameObject, 1f);
+        if (starPrefab != null)
         {
             Instantiate(starPrefab, transform.position, Quaternion.identity);
         }
-        Destroy(gameObject, 1f);
+        
     }
     public void DealDamage()
     {
         int currentMap = PlayerPrefs.GetInt("currentMap", 1);
         if (isDead || playerTransform == null) return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
         if (distanceToPlayer <= attackRange)
         {
             PlayerController playerController = playerTransform.GetComponent<PlayerController>();
