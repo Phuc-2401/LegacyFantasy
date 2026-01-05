@@ -20,7 +20,7 @@ public class Target : MonoBehaviour
                 }
                 else
                 {
-                    GamePlayController.instance.gameScene.continuePanel.SetActive(true);
+                    GamePlayController.instance.gameScene.nextMapPanel.SetActive(true);
                 }
             }
         }

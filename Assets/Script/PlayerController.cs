@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     public Collider2D hitBox;
     private Coroutine dotCoroutine;
 
+    public int maxJumpCount = 2;
+    public int currentJumpCount = 1;
+
     public void Start()
     {
         playerCurrentHp = playerMaxHp;
@@ -105,11 +108,6 @@ public class PlayerController : MonoBehaviour
     }
     public virtual void Move(ActionType actionTypeParam)
     {
-        if (!groundCheck)
-        {
-            return;
-        }
-
         switch (actionTypeParam)
         {
             case ActionType.Left:
@@ -140,8 +138,13 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case ActionType.Jump:
-                animator.Play(jumpAnim);
-                rb.AddForce(new Vector2(rb.velocity.x, 2 * jumpForce), ForceMode2D.Impulse);
+                if (currentJumpCount < maxJumpCount)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                    rb.AddForce(new Vector2(rb.velocity.x, 2 * jumpForce), ForceMode2D.Impulse);
+                    animator.Play(jumpAnim);
+                    currentJumpCount++;
+                }
                 break;
         }
       

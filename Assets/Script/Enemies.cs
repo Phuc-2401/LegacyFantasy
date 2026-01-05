@@ -44,8 +44,10 @@ public class Enemies : MonoBehaviour
     {
         if(isDead) return;
 
-        distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
-
+        if (playerTransform != null)
+        {
+            distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+        }
         DetectPlayer();
 
         if (isChasingPlayer && playerTransform != null)
@@ -177,12 +179,12 @@ public class Enemies : MonoBehaviour
                 Debug.Log("Enemy deals damage to player = 5!");
                 playerController.TakeDamagePlayer(5); 
             }
-            if(currentMap == 2)
+            if(playerController != null && currentMap == 2)
             {    
                 Debug.Log("Enemy deals damage to player = 10!");
                 playerController.TakeDamagePlayer(10);
             }
-            if(currentMap == 3)
+            if(playerController != null && currentMap == 3)
             {
                 Debug.Log("Enemy deals damage to player = 15!");
                 playerController.TakeDamagePlayer(15);
