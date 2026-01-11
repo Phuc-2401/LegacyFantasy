@@ -41,6 +41,12 @@ public class PlayerController : MonoBehaviour
     public int maxJumpCount = 2;
     public int currentJumpCount = 1;
 
+    public AudioSource audioSource;
+    public AudioClip jumpSound;
+    public AudioClip attackSound;
+    public AudioClip hitSound;
+    public AudioClip itemSound;
+
     public void Start()
     {
         playerCurrentHp = playerMaxHp;
@@ -144,6 +150,10 @@ public class PlayerController : MonoBehaviour
                     rb.AddForce(new Vector2(rb.velocity.x, 2 * jumpForce), ForceMode2D.Impulse);
                     animator.Play(jumpAnim);
                     currentJumpCount++;
+                    if (audioSource != null && jumpSound != null)
+                    {
+                        audioSource.PlayOneShot(jumpSound);
+                    }
                 }
                 break;
         }
@@ -157,6 +167,10 @@ public class PlayerController : MonoBehaviour
  
         animator.Play(attackAnim);
         hitBox.enabled = true;
+        if (audioSource != null && attackSound != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
         yield return new WaitForSeconds(attackDuration);
         hitBox.enabled = false;
         isAttacking = false;
@@ -167,6 +181,10 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
         playerCurrentHp -= damage;
         UpdateHealthBar();
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
 
         if (playerCurrentHp <= 0)
         {
@@ -201,6 +219,8 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Dead");
         CharacterControllerGamePlay.instance.PlayerDead();
         GamePlayController.instance.gameScene.losePanel.SetActive(true);
+        GamePlayController.instance.audio.StopMusicAudio();
+        GamePlayController.instance.audio.PlayLoseAudio();
         Destroy(gameObject, 0.6f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -223,6 +243,10 @@ public class PlayerController : MonoBehaviour
         }
         if(collision.gameObject.tag == "HealthItem")
         {
+            if (audioSource != null && itemSound != null)
+            {
+                audioSource.PlayOneShot(itemSound);
+            }
             HealPlayer(20);
             Destroy(collision.gameObject);
         }

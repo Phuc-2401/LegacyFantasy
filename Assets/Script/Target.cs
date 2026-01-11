@@ -21,6 +21,8 @@ public class Target : MonoBehaviour
                 else
                 {
                     GamePlayController.instance.gameScene.nextMapPanel.SetActive(true);
+                    GamePlayController.instance.audio.StopMusicAudio();
+                    GamePlayController.instance.audio.PlayWinAudio();
                 }
             }
         }

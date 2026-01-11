@@ -31,7 +31,8 @@ public class Enemies : MonoBehaviour
 
     public Transform starPrefab;
 
-
+    public AudioSource audioSource;
+    public AudioClip hitSound;
     public void Start()
     {
         currentHp = maxHp;
@@ -140,7 +141,11 @@ public class Enemies : MonoBehaviour
         animator.Play(hitAnim);
         currentHp -= damage;
         UpdateHealthBar();
-        
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
+
         if (currentHp <= 0)
         {
             Die();

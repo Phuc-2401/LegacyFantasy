@@ -78,6 +78,7 @@ public class GameScene : MonoBehaviour
             toturialPanel.SetActive(false);
 
         }
+        Pause.gameObject.SetActive(true);
         starBar.SetActive(true);
         Target target = FindObjectOfType<Target>();
         requiredStars = target.requiredStars; 

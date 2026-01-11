@@ -9,7 +9,8 @@ public class Star : MonoBehaviour
        if (other.gameObject.tag == "Player")
        {
            GamePlayController.instance.gameScene.UpdateStar(1);
-           Destroy(this.gameObject);
+              GamePlayController.instance.audio.PlayStarAudio();
+            Destroy(this.gameObject);
         }
     }
 }

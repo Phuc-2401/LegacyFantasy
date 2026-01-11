@@ -8,6 +8,7 @@ public class GamePlayController : MonoBehaviour
     public static GamePlayController instance;
     public PlayerContaint playerContaint;
     public GameScene gameScene;
+    public Audio audio;
 
     public void Awake()
     {
@@ -16,6 +17,7 @@ public class GamePlayController : MonoBehaviour
     public void Start()
     {
         gameScene.Init();
+        audio.Init();
         playerContaint.Init();
     }
 }
