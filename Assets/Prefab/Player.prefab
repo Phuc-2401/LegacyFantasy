@@ -631,6 +631,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 38de24953b62cba458e2754bcf837c25, type: 3}
   hitSound: {fileID: 8300000, guid: 60ecdedc1ac88024c95df2d04ff64451, type: 3}
   itemSound: {fileID: 8300000, guid: 0dc9693956a8eea4c875b3ed12e5ff78, type: 3}
+  healthBar: {fileID: 5633180573079213042}
 --- !u!82 &787300672455451528
 AudioSource:
   m_ObjectHideFlags: 0

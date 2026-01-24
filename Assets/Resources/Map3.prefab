@@ -9247,7 +9247,7 @@ GameObject:
   - component: {fileID: 8868702232282613187}
   m_Layer: 0
   m_Name: Map3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13495,6 +13495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13516,6 +13520,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5978758437832637951, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13619,6 +13627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13640,6 +13652,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance
@@ -13751,6 +13767,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13813,6 +13833,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest
       objectReference: {fileID: 0}
+    - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13834,6 +13858,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance
@@ -13905,6 +13933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goblin (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance
       value: 2
@@ -13970,6 +14002,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance
@@ -14040,6 +14076,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance
@@ -14147,6 +14187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14208,6 +14252,10 @@ PrefabInstance:
     - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
       propertyPath: m_Name
       value: Chest (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14345,6 +14393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chest (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8379912060703067002, guid: 61ca142293aec9d40bbacb6657d9cffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14366,6 +14418,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance
@@ -14432,6 +14488,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance
@@ -14502,6 +14562,10 @@ PrefabInstance:
     - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: m_Name
       value: Goblin (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3953750953914022225, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5263988772108589156, guid: 07423a466ab257547ac80fd681ddbb0f, type: 3}
       propertyPath: patrolDistance

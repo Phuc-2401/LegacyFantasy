@@ -148,6 +148,7 @@
     <Compile Include="Assets\Script\PlayerContaint.cs" />
     <Compile Include="Assets\ProCamera2D\Examples\TopDownShooter\Scripts\Door.cs" />
     <Compile Include="Assets\ProCamera2D\Code\Core\Utils\PrefsData.cs" />
+    <Compile Include="Assets\Script\BulletController.cs" />
     <Compile Include="Assets\ProCamera2D\Examples\TopDownShooter\Scripts\Enemy\EnemyAttack.cs" />
     <Compile Include="Assets\ProCamera2D\3rd Party Plugins Support\PlayMakerActions\ProCamera2DAddCameraTargetAction.cs" />
     <Compile Include="Assets\ProCamera2D\Examples\Platformer\Scripts\ToggleCinematics.cs" />

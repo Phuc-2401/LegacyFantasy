@@ -1,7 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditorInternal.VersionControl.ListControl;
+public enum EnemyState
+{
+    Patrol,
+    Shoot,
+    Chase,
+    Attack
+}
 public class Enemies : MonoBehaviour
 {
     public string idleAnim;
@@ -16,7 +25,6 @@ public class Enemies : MonoBehaviour
     public float patrolDistance; 
     private Vector3 startPos;
 
-    public bool isChasingPlayer = false;
     public Transform playerTransform;
 
     public float attackRange;
@@ -30,6 +38,14 @@ public class Enemies : MonoBehaviour
     public bool isDead = false;
 
     public Transform starPrefab;
+
+    public float bulletRange;
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float fireRate;
+
+    private float nextFireTime;
+    private EnemyState currentState;
     public void Start()
     {
         currentHp = maxHp;
@@ -46,15 +62,36 @@ public class Enemies : MonoBehaviour
         {
             distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
         }
-        DetectPlayer();
+        if (distanceToPlayer <= attackRange)
+            currentState = EnemyState.Attack;
+        else if (distanceToPlayer <= detectRange)
+            currentState = EnemyState.Chase;
+        else if (distanceToPlayer <= bulletRange)
+            currentState = EnemyState.Shoot;
+        else
+            currentState = EnemyState.Patrol;
 
-        if (isChasingPlayer && playerTransform != null)
+        switch (currentState)
         {
-            ChasePlayer();
-        }
-        else 
-        {
-            Move();
+            case EnemyState.Patrol:
+                animator.Play(runAnim);
+                Move();
+                break;
+            case EnemyState.Chase:
+                animator.Play(runAnim);
+                ChasePlayer();
+                break;
+            case EnemyState.Shoot:
+                FacePlayer();
+                animator.Play(idleAnim);
+                ShootPlayer();
+                break;
+            case EnemyState.Attack:
+                FacePlayer();
+                animator.Play(attackAnim);
+                if (!isAttacking)
+                    StartCoroutine(Attack());
+                break;
         }
 
 
@@ -74,37 +111,25 @@ public class Enemies : MonoBehaviour
             TurnAround();
         }
     }
-    public void DetectPlayer()
+    public void ChasePlayer()
+    {
+        Vector3 dir = (playerTransform.position - transform.position).normalized;
+        transform.position += new Vector3(dir.x * speed * Time.deltaTime, 0, 0);
+
+        FacePlayer();
+
+        animator.Play(runAnim);
+    }
+    public void FacePlayer()
     {
         if (playerTransform == null) return;
 
-        if (distanceToPlayer <= detectRange)
+        float directionX = playerTransform.position.x - transform.position.x;
+        if (Mathf.Abs(directionX) > 0.01f)
         {
-            isChasingPlayer = true;
-        }
-        else if (distanceToPlayer > detectRange)
-        {
-            isChasingPlayer = false;
-        }
-    }
-    public void ChasePlayer()
-    {
-        if (distanceToPlayer > attackRange)
-        {
-            Vector3 dir = (playerTransform.position - transform.position).normalized;
-            transform.position += new Vector3(dir.x * speed * Time.deltaTime, 0, 0);
-            animator.Play(runAnim);
-
-            if (Mathf.Sign(dir.x) != Mathf.Sign(transform.localScale.x))
-            {
-                TurnAround();
-            }
-
-        }
-        else
-        {
-            if (!isAttacking)
-                StartCoroutine(Attack());
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(directionX);
+            transform.localScale = scale;
         }
     }
     public void OnDrawGizmosSelected()
@@ -114,6 +139,9 @@ public class Enemies : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, bulletRange);
     }
     public void TurnAround()
     {
@@ -189,7 +217,13 @@ public class Enemies : MonoBehaviour
             }
         }
     }
+    public void ShootPlayer()
+    {
+        if (Time.time < nextFireTime) return;
 
+        nextFireTime = Time.time + fireRate;
+        Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+    }
 
 
 }

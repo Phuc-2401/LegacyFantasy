@@ -139,6 +139,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2999998180041595614}
+  - {fileID: 7774011237241423544}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1594949622264198943
@@ -297,7 +298,6 @@ MonoBehaviour:
   rb: {fileID: 238233772839428283}
   speed: 4
   patrolDistance: 10
-  isChasingPlayer: 0
   playerTransform: {fileID: 6161580478641501323, guid: 893ec1b1e0d18344eba4aa46970008c9, type: 3}
   attackRange: 3
   isAttacking: 0
@@ -308,9 +308,10 @@ MonoBehaviour:
   healthBar: {fileID: 6267968499854081858}
   isDead: 0
   starPrefab: {fileID: 4776287878821161130, guid: f8077e743b2b37d468008e865d1b3be6, type: 3}
-  audioSource: {fileID: 9076928324025155966}
-  attackSound: {fileID: 8300000, guid: 471e62d22773dde4dbac7e2f8ec1efc3, type: 3}
-  hitSound: {fileID: 8300000, guid: 60ecdedc1ac88024c95df2d04ff64451, type: 3}
+  bulletRange: 11
+  bulletPrefab: {fileID: 8293445909687630495, guid: 9634512b09434474aab78762a827b8b5, type: 3}
+  firePoint: {fileID: 7774011237241423544}
+  fireRate: 1
 --- !u!82 &9076928324025155966
 AudioSource:
   m_ObjectHideFlags: 0
@@ -557,3 +558,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &4160016545386304628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7774011237241423544}
+  m_Layer: 6
+  m_Name: bulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7774011237241423544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160016545386304628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.02, y: -0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5978758437832637951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
