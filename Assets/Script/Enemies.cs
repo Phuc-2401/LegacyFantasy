@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditorInternal.VersionControl.ListControl;
 public enum EnemyState
 {
     Patrol,
@@ -56,7 +55,8 @@ public class Enemies : MonoBehaviour
 
     public void Update()
     {
-        if(isDead) return;
+        if (isDead) return;
+        if (playerTransform == null) return;
 
         if (playerTransform != null)
         {
@@ -74,21 +74,17 @@ public class Enemies : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.Patrol:
-                animator.Play(runAnim);
                 Move();
                 break;
             case EnemyState.Chase:
-                animator.Play(runAnim);
                 ChasePlayer();
                 break;
             case EnemyState.Shoot:
                 FacePlayer();
-                animator.Play(idleAnim);
                 ShootPlayer();
                 break;
             case EnemyState.Attack:
                 FacePlayer();
-                animator.Play(attackAnim);
                 if (!isAttacking)
                     StartCoroutine(Attack());
                 break;
@@ -200,20 +196,25 @@ public class Enemies : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             PlayerController playerController = playerTransform.GetComponent<PlayerController>();
-            if (playerController != null && currentMap == 1)
+            if (playerController != null)
             {
-                Debug.Log("Enemy deals damage to player = 5!");
-                playerController.TakeDamagePlayer(5); 
-            }
-            if(playerController != null && currentMap == 2)
-            {    
-                Debug.Log("Enemy deals damage to player = 10!");
-                playerController.TakeDamagePlayer(10);
-            }
-            if(playerController != null && currentMap == 3)
-            {
-                Debug.Log("Enemy deals damage to player = 15!");
-                playerController.TakeDamagePlayer(15);
+                switch (currentMap)
+                {
+                    case 1:
+                        Debug.Log("Enemy deals damage to player = 5!");
+                        playerController.TakeDamagePlayer(5);
+                        break;
+
+                    case 2:
+                        Debug.Log("Enemy deals damage to player = 10!");
+                        playerController.TakeDamagePlayer(10);
+                        break;
+
+                    case 3:
+                        Debug.Log("Enemy deals damage to player = 15!");
+                        playerController.TakeDamagePlayer(15);
+                        break;
+                }
             }
         }
     }
@@ -222,6 +223,7 @@ public class Enemies : MonoBehaviour
         if (Time.time < nextFireTime) return;
 
         nextFireTime = Time.time + fireRate;
+        animator.Play(idleAnim);
         Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
     }
 

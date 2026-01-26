@@ -25,8 +25,24 @@ public class BulletController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        int currentMap = PlayerPrefs.GetInt("currentMap", 1);
         if (collision.CompareTag("Player"))
         {
+            switch(currentMap)
+            {
+                case 1:
+                    damage = 5;
+                    Debug.Log("Bullet deals damage to player = 5!");
+                    break;
+                case 2:
+                    damage = 10;
+                    Debug.Log("Bullet deals damage to player = 10!");
+                    break;
+                case 3:
+                    damage = 15;
+                    Debug.Log("Bullet deals damage to player = 15!");
+                    break;
+            }
             collision.GetComponent<PlayerController>()?.TakeDamagePlayer(damage);
             Destroy(gameObject);
         }
